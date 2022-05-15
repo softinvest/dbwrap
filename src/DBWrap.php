@@ -31,7 +31,7 @@ class DBWrap
      * @param array<iterable> $params
      * @param string $from
      *
-     * @return array<iterable|string|false|int>
+     * @return array|string|false|int
      */
     public static function callProc(string $name, array $params, string $from = ''): array|string|false|int
     {
@@ -66,23 +66,23 @@ class DBWrap
 
     /**
      * @param string $name
-     * @param array<mixed> $params
+     * @param mixed $params
      *
      * @return array<iterable>|string|false|int
      */
-    public static function callSelectInsecure(string $name, array $params): array|string|false|int
+    public static function callSelectInsecure(string $name, mixed $params): array|string|false|int
     {
         return static::callProcInsecure($name, $params, '* FROM ');
     }
 
     /**
      * @param string $name
-     * @param array<iterable> $params
+     * @param mixed $params
      * @param string $from
      *
      * @return array<iterable>|string|false|int
      */
-    public static function callProcInsecure(string $name, array $params, string $from = ''): array|string|false|int
+    public static function callProcInsecure(string $name, mixed $params, string $from = '* FROM '): array|string|false|int
     {
         if ($params) {
             $query = 'SELECT ' . $from . $name . '(' . join(',', $params) . ')';
@@ -128,11 +128,11 @@ class DBWrap
 
     /**
      * @param string $name
-     * @param array<string|int|float|bool|null> $params
+     * @param mixed $params
      *
      * @return \stdClass|string|false
      */
-    public static function callSelectOneInsecure(string $name, array $params): stdClass|string|false
+    public static function callSelectOneInsecure(string $name, mixed $params): stdClass|string|false
     {
         $ret = static::callProcInsecure($name, $params, '* FROM ');
         /**
