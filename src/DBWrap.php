@@ -2,13 +2,14 @@
 
 namespace SoftInvest\Helpers;
 
+use Illuminate\Database\Query\Expression;
 use Illuminate\Support\Facades\DB;
 use stdClass;
 
 class DBWrap
 {
     /**
-     * @return \Illuminate\Support\Facades\DB
+     * @return DB
      */
     public static function getDB(): DB
     {
@@ -147,5 +148,13 @@ class DBWrap
         $result = array_shift($ret);
 
         return $result;
+    }
+
+    /**
+     * @return Expression
+     */
+    public static function generateUUID(): Expression
+    {
+        return self::getDB()::raw('public.generateuuid()');
     }
 }
