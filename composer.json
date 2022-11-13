@@ -16,7 +16,8 @@
   },
   "autoload": {
     "psr-4": {
-      "SoftInvest\\Helpers\\": "src"
+      "SoftInvest\\Helpers\\": "src",
+      "SoftInvest\\Console\\Commands\\": "src\\Commands"
     }
   }
 }
